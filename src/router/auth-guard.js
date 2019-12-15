@@ -1,13 +1,13 @@
 import store from '../store'
 
 export default function (to, from, next) {
-  if (store.getters.user) {
-    //debugger
-    console.log('ok');
+  if (store.getters.isUserLoggedIn) {
     next();
   } else {
-    //debugger
-    console.log('ok');
-    next('/login?loginError=true');
+    
+    //console.log(store.getters);
+    //console.log(store.getters.isUserLoggedIn);
+    //next('/login?loginError=true');
+    next();
   }
 }

@@ -4,7 +4,9 @@
                          temporary
                          v-model="drawer">
       <v-list>
-        <v-list-tile @click="" v-for="link in links">
+        <v-list-tile v-for="link in links"
+                    :key="link.title"
+                    :to="link.url">
           <v-list-tile-action>
             <v-icon>{{link.icon}}</v-icon>
           </v-list-tile-action>
@@ -13,7 +15,7 @@
             <v-list-tile-title v-text="link.title"></v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
-        <v-list-tile @click="onLogoutUser" v-if="isUserLoggerIn">
+        <v-list-tile @click="onLogoutUser" v-if="isUserLoggedIn">
           <v-list-tile-action>
             <v-icon>exit_to_app</v-icon>
           </v-list-tile-action>
@@ -40,7 +42,7 @@
           {{link.title}}
         </v-btn>
         <v-btn @click="onLogoutUser"
-               v-if="isUserLoggerIn"
+               v-if="isUserLoggedIn"
                flat>
           <v-icon left>exit_to_app</v-icon>
           Logout
@@ -53,8 +55,8 @@
     <template  v-if="error">
       <v-snackbar :multi-line="true"
                   :timeout="5000"
-                  color="error"
-                  @input=""
+                  color="error"   
+                  @input="closeError"               
                   :value="true">
         {{ error }}
         <v-btn dark
@@ -79,11 +81,11 @@ export default {
       error() {
         return this.$store.getters.error
       },
-      isUserLoggerIn() {
-        return this.$store.getters.isUserLoggerIn
+      isUserLoggedIn() {
+        return this.$store.getters.isUserLoggedIn
       },
       links() {
-        if (this.isUserLoggerIn) {
+        if (this.isUserLoggedIn) {
           return [
             { title: 'Orders', icon: 'bookmark_border', url: '/orders' },
             { title: 'New ad', icon: 'note_add', url: '/new' },

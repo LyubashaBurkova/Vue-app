@@ -42,9 +42,9 @@ export default {
 
         const ad = await fb.database().ref('ads').push(newAd)
 
-        const imageExt = image.name.slice(image.name.lastIndexOf('.')) //тут будет расширение
+        const imageExt = image.name.slice(image.name.lastIndexOf('.')) 
 
-        await fb.storage().ref(`ads/${ad.key}.${imageExt}`).put(image)   //добавляем в storage 
+        await fb.storage().ref(`ads/${ad.key}.${imageExt}`).put(image) 
 
         //получаем url из storage
 
@@ -54,7 +54,7 @@ export default {
           return url
         });
 
-        await fb.database().ref('ads').child(ad.key).update({ imageSrc })  //обновляем значение в database
+        await fb.database().ref('ads').child(ad.key).update({ imageSrc }) 
 
         commit('setLoading', false)
         commit('createAd', {
@@ -87,7 +87,6 @@ export default {
           )
         })
 
-        console.log(ads)
         commit('loadAds', resultAds)
 
         commit('setLoading', false)
