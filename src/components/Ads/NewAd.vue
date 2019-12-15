@@ -26,9 +26,9 @@
       @click="loader = 'loading3'">-->
             <v-btn color="blue-grey"
                    class="white--text warning">
-                   Upload
+                   Upload                  
               <v-icon right dark>cloud_upload</v-icon>
-            </v-btn>
+            </v-btn>             
           </v-flex>
         </v-layout>
         <v-layout row>
@@ -48,6 +48,7 @@
           <v-flex>
             <v-spacer></v-spacer>
             <v-btn
+                   :loading="loading"
                    :disabled="!valid"                   
                    class="success"
                    @click="createAd">
@@ -71,6 +72,11 @@
         valid: false
       }
     },
+    computed:{
+      loading(){
+        return this.$store.getters.loading
+      }
+    },
     methods: {
       createAd() {
         if (this.$refs.form.validate()) {
@@ -82,9 +88,15 @@
           }
 
           this.$store.dispatch('createAd', ad)
-          console.log(ad)
+          .then(() => {
+            this.$router.push('/list')
+          })
+          .catch(() => {})
+
+
+          //console.log(ad)
         }
-      }
+      },    
     }
   }
 </script>

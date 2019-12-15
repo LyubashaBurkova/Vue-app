@@ -21,13 +21,13 @@ new Vue({
   template: '<App/>',
   created() {
     fb.initializeApp({
-      apiKey: "AIzaSyAQWYVoVuYUha7NqbgHJiIrwyFFE8tJqdo",
-      authDomain: "its-ads-burkova.firebaseapp.com",
-      databaseURL: "https://its-ads-burkova.firebaseio.com",
-      projectId: "its-ads-burkova",
-      storageBucket: "",
-      messagingSenderId: "296363231297",
-      appId: "1:296363231297:web:0f47294548aca805"
+      apiKey: 'AIzaSyAQWYVoVuYUha7NqbgHJiIrwyFFE8tJqdo',
+      authDomain: 'its-ads-burkova.firebaseapp.com',
+      databaseURL: 'https://its-ads-burkova.firebaseio.com',
+      projectId: 'its-ads-burkova',
+      storageBucket: 'its-ads-burkova.appspot.com',
+      messagingSenderId: '296363231297',
+      appId: '1:296363231297:web:0f47294548aca805'
     })
     //пользователь остается в системе при перезагрузке страницы
     fb.auth().onAuthStateChanged(user => {
@@ -35,5 +35,7 @@ new Vue({
         this.$store.dispatch('autoLoginUser', user)
       }
     })
+
+     this.$store.dispatch('fetchAds')
   }
 })
