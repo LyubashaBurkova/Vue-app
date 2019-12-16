@@ -90,7 +90,7 @@ export default {
                 adId: this.ad.id,
                 ownerId: this.ad.ownerId
             })
-            .finaly(() => {
+            .finally(() => {
                 this.name = ''
                 this.phone = ''
                 this.localLoading = false
