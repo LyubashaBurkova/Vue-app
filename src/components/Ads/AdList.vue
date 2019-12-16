@@ -7,7 +7,7 @@
                 class="elevation-10 mb-3"
                 v-for="ad in myAds"
                 :key="ad.id">
-          <v-layout>
+          <v-layout v-if="!loading && myAds.length !== 0">
             <v-flex xs4>
               <v-card-media :src="ad.imageSrc" height="160"></v-card-media>
             </v-flex>
@@ -26,6 +26,22 @@
               </v-card-actions>
             </v-flex>
           </v-layout>
+          <v-layout v-else-if="!loading && myAds.length === 0">
+            <v-flex xs12 class="text-xs-center">
+              <h1>You have no ads</h1>
+            </v-flex>
+          </v-layout>
+          <v-layout v-else>
+            <v-flex xs12 class="text-xs-center">
+              <v-progress-circular
+                :size="70"
+                :width="7"
+                color="primary"
+                indeterminate
+              >
+            </v-progress-circular>
+            </v-flex>
+          </v-layout>
         </v-card>
       </v-flex>
     </v-layout>
@@ -35,7 +51,11 @@
   export default {
         computed: {
           myAds() {
+            console.log(this.$store.getters.myAds.length)
             return this.$store.getters.myAds
+          },
+          loading(){
+            return this.$store.getters.loading
           }
         }        
       }
