@@ -3,6 +3,7 @@ import App from './App'
 import router from './router'
 import store from './store'
 import Vuetify from 'vuetify'
+import BuyModalComponent from '@/components/Shared/BuyModal'
 import * as fb from 'firebase'
 import 'vuetify/dist/vuetify.min.css'
 
@@ -10,6 +11,7 @@ Vue.use(Vuetify, {
   iconfont: 'mdi' // 'md' || 'mdi' || 'fa' || 'fa4'
 })
 
+Vue.component('app-buy-modal', BuyModalComponent)
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */

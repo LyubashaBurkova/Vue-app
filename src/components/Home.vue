@@ -22,6 +22,7 @@
                 sm6
                 md4
                 v-for="ad of ads"
+                :key="ad.id"
                 :accesskey="ad.id">
           <v-card>
             <v-img :src="ad.imageSrc"
@@ -38,7 +39,7 @@
             <v-card-actions>
               <v-spacer></v-spacer><!--смещает кнопки вправо-->
               <v-btn flat :to="'/ad/' + ad.id">Open</v-btn>
-              <v-btn raised class="primaty">Buy</v-btn>
+              <app-buy-modal :ad="ad"></app-buy-modal>
             </v-card-actions>
           </v-card>
         </v-flex>
