@@ -23,9 +23,6 @@
         </v-form>
         <v-layout row class="mb-3">
           <v-flex xs12>
-            <!--:loading="loading3"
-  :disabled="loading3"
-            @click="loader = 'loading3'">-->
             <v-btn color="blue-grey" class="white--text warning" @click="triggerUpload">
               Upload
               <v-icon right dark>cloud_upload</v-icon>

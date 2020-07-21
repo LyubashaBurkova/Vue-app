@@ -11,15 +11,14 @@ export default {
     user: null
   },
   mutations: {
-    setUser(state, payload) {
+    setUser (state, payload) {
       state.user = payload
     }
   },
   actions: {
-    async registerUser({ commit }, { email, password }) {
-      commit('clearError')//очищаем ошибки которые прийдут с сервера
-      commit('setLoading', true)//показываем загрузку
-
+    async registerUser ({commit}, {email, password}) {
+      commit('clearError')
+      commit('setLoading', true)
       try {
         const user = await fb.auth().createUserWithEmailAndPassword(email, password)
         commit('setUser', new User(user.user.uid))
@@ -28,12 +27,11 @@ export default {
         commit('setLoading', false)
         commit('setError', error.message)
         throw error
-      }          
+      }
     },
-    async loginUser({ commit }, { email, password }) {
-      commit('clearError')//очищаем ошибки которые прийдут с сервера
-      commit('setLoading', true)//показываем загрузку
-
+    async loginUser ({commit}, {email, password}) {
+      commit('clearError')
+      commit('setLoading', true)
       try {
         const user = await fb.auth().signInWithEmailAndPassword(email, password)
         commit('setUser', new User(user.user.uid))
@@ -42,23 +40,21 @@ export default {
         commit('setLoading', false)
         commit('setError', error.message)
         throw error
-      }          
+      }
     },
-    //остаемся авторизованными при перезагрузке страницы
-    autoLoginUser({ commit }, payload) {
+    autoLoginUser ({commit}, payload) {
       commit('setUser', new User(payload.uid))
     },
-    //выход
-    logoutUser({ commit }) {
+    logoutUser ({commit}) {
       fb.auth().signOut()
       commit('setUser', null)
     }
   },
   getters: {
-    user(state) {
+    user (state) {
       return state.user
     },
-    isUserLoggedIn(state) {
+    isUserLoggedIn (state) {
       return state.user !== null
     }
   }

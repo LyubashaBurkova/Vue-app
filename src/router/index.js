@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import AuthGuard from './auth-guard'
-import Home from '@/components/Home' /* @- смотрим из src*/
+import Home from '@/components/Home'
 import Ad from '@/components/Ads/Ad'
 import AdList from '@/components/Ads/AdList'
 import NewAd from '@/components/Ads/NewAd'
